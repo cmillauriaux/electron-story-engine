@@ -1,0 +1,36 @@
+<mat-list-item role="listitem">
+  <mat-card-title>Menu</mat-card-title>
+</mat-list-item>
+<mat-nav-list>
+  <mat-list-item>
+    Scenes
+    <span class="example-spacer"></span>
+    <button mat-icon-button>
+      <mat-icon (click)="addScene()">note_add</mat-icon>
+    </button>
+  </mat-list-item>
+  <mat-accordion multi="false">
+    <mat-expansion-panel *ngFor="let scene of scenes">
+      <mat-expansion-panel-header (click)="selectScene(scene.id)">
+        <mat-panel-description>
+          {{scene.title}} (v{{scene.version}})
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-list role="list">
+        <mat-list-item *ngFor="let sequence of sequences">
+          {{sequence.id}}
+          <span class="example-spacer"></span>
+          <button mat-icon-button (click)="selectSequence(sequence.id)">
+            <mat-icon>mode_edit</mat-icon>
+          </button>
+          <button mat-icon-button (click)="deleteSequence(sequence.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-list-item>
+        <mat-list-item>
+            <button mat-raised-button class="mat-primary full-width" (click)="addSequence()">ADD SEQUENCE</button>
+        </mat-list-item>
+      </mat-list>
+    </mat-expansion-panel>
+  </mat-accordion>
+</mat-nav-list>

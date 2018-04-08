@@ -1,4 +1,4 @@
-import { app, BrowserWindow, screen } from 'electron';
+import { app, BrowserWindow, screen, ipcMain, dialog } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
 
@@ -76,3 +76,13 @@ try {
   // Catch Error
   // throw e;
 }
+
+ipcMain.on('show-dialog', (event, arg) => {
+  dialog.showMessageBox(win, {
+    type: 'info',
+    buttons: ['OK'],
+    title: 'Native Dialog',
+    message: 'I\'m a native dialog!',
+    detail: 'It\'s my pleasure to make your life better.'
+  });
+});

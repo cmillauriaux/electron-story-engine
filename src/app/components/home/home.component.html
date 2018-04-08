@@ -1,5 +1,22 @@
-<div class="container">
-  <h1 class="title">
-    {{ 'PAGES.HOME.TITLE' | translate }}
-  </h1>
-</div>
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #sidenav mode="side" [(opened)]="opened" (opened)="events.push('open!')">
+    <app-nav-bar [scenes]="scenes" [sequences]="sequences" (sceneSelected)="selectScene($event)" (sequenceSelected)="selectSequence($event)" (sceneAdded)="addScene()"></app-nav-bar>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div *ngIf="!currentStory" class="full-height">
+      <app-load-story class="full-height" (storyLoaded)="storyLoaded($event)"></app-load-story>
+    </div>
+    <div *ngIf="currentStory">
+      <mat-toolbar color="primary">
+        <mat-toolbar-row>
+          <mat-icon (click)="sidenav.toggle()">dehaze</mat-icon>
+          <span>{{ currentStory?.title }}</span>
+          <span class="example-spacer"></span>
+          <mat-icon class="example-icon" (click)="exitStory()">clear</mat-icon>
+          <mat-icon class="example-icon">backup</mat-icon>
+        </mat-toolbar-row>
+      </mat-toolbar>
+      <app-edit-sequence [currentSequence]="currentSequence"></app-edit-sequence>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,16 @@
+<mat-card class="full-height">
+  <mat-card-title>
+    Load story
+  </mat-card-title>
+  <mat-card-content>
+    <input hidden="true" id="input-file-id" type="file" (change)="selectProjetRoot($event)" />
+    <label for="input-file-id" class="mat-raised-button mat-primary full-width">Open stories</label>
+  </mat-card-content>
+  <mat-list role="list">
+    <mat-list-item *ngIf="stories && stories.length > 0">
+      <a mat-list-item *ngFor="let story of stories">{{story.title}} (v{{story.version}})
+        <mat-icon (click)="selectStory(story.id)">mode_edit</mat-icon>
+      </a>
+    </mat-list-item>
+  </mat-list>
+</mat-card>

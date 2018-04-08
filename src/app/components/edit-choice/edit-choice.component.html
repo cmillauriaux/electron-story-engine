@@ -1,0 +1,75 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      {{choice.title}}
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <mat-card class="form-container">
+    <mat-form-field>
+      <input matInput placeholder="Order" type="number" [(ngModel)]="choice.order">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Title" [(ngModel)]="choice.title">
+    </mat-form-field>
+
+    <div class="two-columns">
+      <div class="left">
+        <h3 class="subheading-2">Conditions
+          <button mat-mini-fab (click)="addCondition(choice)">
+            <mat-icon>add</mat-icon>
+          </button>
+        </h3>
+        <mat-card *ngFor="let condition of choice.conditions; let ic = index" [attr.data-index]="ic" class="form-container">
+          <mat-form-field>
+            <mat-select placeholder="Type" [(value)]="condition.type">
+              <mat-option value="SkillCondition">Skill</mat-option>
+              <mat-option value="InventoryCondition">Inventaire</mat-option>
+              <mat-option value="RelationCondition">Relation</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Attribute" type="text" [(ngModel)]="condition.attribute">
+          </mat-form-field>
+          <mat-checkbox [(ngModel)]="condition.superior">Greater</mat-checkbox>
+          <mat-checkbox [(ngModel)]="condition.inferior">Less</mat-checkbox>
+          <mat-checkbox [(ngModel)]="condition.equal">Equal</mat-checkbox>
+          <mat-checkbox [(ngModel)]="condition.exists">Exists</mat-checkbox>
+          <mat-form-field>
+            <input matInput placeholder="Attribute" type="number" [(ngModel)]="condition.value">
+          </mat-form-field>
+          <button mat-raised-button class="mat-primary full-width" (click)="deleteCondition(choice, ic)">DELETE CONDITION</button>
+        </mat-card>
+      </div>
+      <div class="right">
+        <h3 class="subheading-2">Conséquences
+          <button mat-mini-fab (click)="addConsequence(choice)">
+            <mat-icon>add</mat-icon>
+          </button>
+        </h3>
+        <mat-card *ngFor="let consequence of choice.consequences; let ic = index" [attr.data-index]="ic" class="form-container">
+          <mat-form-field>
+            <mat-select placeholder="Type" [(value)]="consequence.type">
+              <mat-option value="SkillConsequence">Skill</mat-option>
+              <mat-option value="InventoryConsequence">Inventaire</mat-option>
+              <mat-option value="RelationConsequence">Relation</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Attribute" type="text" [(ngModel)]="consequence.name">
+          </mat-form-field>
+          <mat-checkbox [(ngModel)]="consequence.bonus">Bonus</mat-checkbox>
+          <mat-form-field>
+            <input matInput placeholder="Attribute" type="number" [(ngModel)]="consequence.value">
+          </mat-form-field>
+          <button mat-raised-button class="mat-primary full-width" (click)="deleteConsequence(choice, ic)">DELETE CONSEQUENCE</button>
+        </mat-card>
+      </div>
+    </div>
+    <mat-card-actions>
+      <button mat-icon-button (click)="deleteChoice(i)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</mat-expansion-panel>
