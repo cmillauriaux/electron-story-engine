@@ -39,7 +39,8 @@
     "@angular/cdk": "^5.2.4",
     "@angular/material": "^5.2.4",
     "angular2-uuid": "^1.1.1",
-    "story-engine-library": "file:///C:\\Projets\\story-engine-library"
+    "ngx-electron": "^1.0.4",
+    "story-engine-library": "file:../javascript-story-engine"
   },
   "devDependencies": {
     "@angular/cli": "1.7.1",

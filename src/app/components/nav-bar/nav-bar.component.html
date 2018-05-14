@@ -2,6 +2,34 @@
   <mat-card-title>Menu</mat-card-title>
 </mat-list-item>
 <mat-nav-list>
+  <mat-accordion multi="false">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-description>
+          Characters
+          <span class="example-spacer"></span>
+          <button mat-icon-button>
+            <mat-icon>note_add</mat-icon>
+          </button>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-list role="list">
+        <mat-list-item *ngFor="let character of characters">
+          {{character.name}}
+          <span class="example-spacer"></span>
+          <button mat-icon-button (click)="selectCharacter(character.id)">
+            <mat-icon>mode_edit</mat-icon>
+          </button>
+          <button mat-icon-button (click)="deleteCharacter(character.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-list-item>
+        <mat-list-item>
+          <button mat-raised-button class="mat-primary full-width" (click)="addCharacter()">ADD CHARACTER</button>
+        </mat-list-item>
+      </mat-list>
+    </mat-expansion-panel>
+  </mat-accordion>
   <mat-list-item>
     Scenes
     <span class="example-spacer"></span>
@@ -18,7 +46,7 @@
       </mat-expansion-panel-header>
       <mat-list role="list">
         <mat-list-item *ngFor="let sequence of sequences">
-          {{sequence.id}}
+          {{sequence.title}}
           <span class="example-spacer"></span>
           <button mat-icon-button (click)="selectSequence(sequence.id)">
             <mat-icon>mode_edit</mat-icon>
@@ -28,7 +56,7 @@
           </button>
         </mat-list-item>
         <mat-list-item>
-            <button mat-raised-button class="mat-primary full-width" (click)="addSequence()">ADD SEQUENCE</button>
+          <button mat-raised-button class="mat-primary full-width" (click)="addSequence(scene.id)">ADD SEQUENCE</button>
         </mat-list-item>
       </mat-list>
     </mat-expansion-panel>

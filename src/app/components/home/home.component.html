@@ -1,10 +1,11 @@
 <mat-sidenav-container class="example-container">
   <mat-sidenav #sidenav mode="side" [(opened)]="opened" (opened)="events.push('open!')">
-    <app-nav-bar [scenes]="scenes" [sequences]="sequences" (sceneSelected)="selectScene($event)" (sequenceSelected)="selectSequence($event)" (sceneAdded)="addScene()"></app-nav-bar>
+    <app-nav-bar [scenes]="scenes" [sequences]="sequences" [characters]="characters" (sceneSelected)="selectScene($event)" (characterSelected)="selectCharacter($event)"
+      (sequenceSelected)="selectSequence($event)" (sceneAdded)="addScene()" (characterAdded)="addCharacter()" (sequenceAdded)="addSequence($event)"></app-nav-bar>
   </mat-sidenav>
   <mat-sidenav-content>
     <div *ngIf="!currentStory" class="full-height">
-      <app-load-story class="full-height" (storyLoaded)="storyLoaded($event)"></app-load-story>
+      <app-load-story class="full-height" (storyLoaded)="storyLoaded($event)" (fileSelected)="fileSelected($event)"></app-load-story>
     </div>
     <div *ngIf="currentStory">
       <mat-toolbar color="primary">
@@ -13,9 +14,24 @@
           <span>{{ currentStory?.title }}</span>
           <span class="example-spacer"></span>
           <mat-icon class="example-icon" (click)="exitStory()">clear</mat-icon>
-          <mat-icon class="example-icon">backup</mat-icon>
+          <mat-icon class="example-icon" (click)="saveStory()">backup</mat-icon>
         </mat-toolbar-row>
       </mat-toolbar>
+      <div *ngIf="!currentSequence && !currentCharacter">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>Summary</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <mat-list>
+              <mat-list-item>Scenes : </mat-list-item>
+              <mat-list-item>Sequences : </mat-list-item>
+              <mat-list-item>Characters : </mat-list-item>
+              <mat-list-item>Characters : </mat-list-item>
+            </mat-list>
+          </mat-card-content>
+        </mat-card>
+      </div>
       <app-edit-sequence [currentSequence]="currentSequence"></app-edit-sequence>
     </div>
   </mat-sidenav-content>

@@ -1,14 +1,11 @@
 <mat-horizontal-stepper *ngIf="currentSequence">
   <mat-step label="Sequence">
     <mat-card *ngIf="currentSequence">
-      <mat-card-title>
-        {{currentSequence.id}}
-      </mat-card-title>
       <mat-card-subtitle>
         v{{currentSequence.version}}
       </mat-card-subtitle>
       <mat-form-field>
-        <input matInput placeholder="Title" [(ngModel)]="currentSequence.title" class="full-width"> 
+        <input matInput placeholder="Title" [(ngModel)]="currentSequence.title" class="full-width">
       </mat-form-field>
       <mat-list role="list">
         <mat-list-item role="listitem">Dialogues : {{currentSequence.dialogs.length}}</mat-list-item>

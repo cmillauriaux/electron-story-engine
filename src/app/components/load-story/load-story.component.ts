@@ -9,6 +9,7 @@ import { StoryService } from '../../providers/story.service';
 export class LoadStoryComponent implements OnInit {
 
   @Output() storyLoaded: EventEmitter<string> = new EventEmitter();
+  @Output() fileSelected: EventEmitter<string> = new EventEmitter();
   private file: any;
 
   constructor(private storySvc: StoryService) { }
@@ -23,6 +24,7 @@ export class LoadStoryComponent implements OnInit {
       const fileReader = new FileReader();
       fileReader.onload = (e) => {
         this.storyLoaded.emit(fileReader.result);
+        this.fileSelected.emit(this.file.path);
       };
       fileReader.readAsText(this.file);
     }

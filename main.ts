@@ -1,6 +1,7 @@
 import { app, BrowserWindow, screen, ipcMain, dialog } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
+import * as fs from 'fs';
 
 let win, serve;
 const args = process.argv.slice(1);
@@ -84,5 +85,14 @@ ipcMain.on('show-dialog', (event, arg) => {
     title: 'Native Dialog',
     message: 'I\'m a native dialog!',
     detail: 'It\'s my pleasure to make your life better.'
+  });
+});
+
+ipcMain.on('save-story', (event, arg) => {
+  fs.writeFile(arg.file, arg.data, (err) => {
+    if (err) {
+      throw err;
+    }
+    console.log('It\'s saved!');
   });
 });

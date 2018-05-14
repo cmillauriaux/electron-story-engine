@@ -24,7 +24,9 @@ import { LoadStoryComponent } from './components/load-story/load-story.component
 import { EditChoiceComponent } from './components/edit-choice/edit-choice.component';
 import { EditSequenceComponent } from './components/edit-sequence/edit-sequence.component';
 
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { NgxElectronModule } from 'ngx-electron';
 
 import {
   MatAutocompleteModule,
@@ -122,6 +124,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppRoutingModule,
     DemoMaterialModule,
     BrowserAnimationsModule,
+    NgxElectronModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
